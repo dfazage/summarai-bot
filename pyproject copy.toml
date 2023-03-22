@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "thetaplanner"
+version = "0.1.0"
+description = "ChatGPT-based assistant for travel planning"
+authors = ["Faza Hamzaoui (dfazage)"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+openai = "^0.27.2"
+telebot = "^0.0.5"
+python-telegram-bot = "^20.1"
+python-dotenv = "^1.0.0"
+pydub = "^0.25.1"
+
+
+[tool.poetry.dev-dependencies]
+taskipy = "^1.2.1"
+pytest = "^6.0.1"
+black = "^23.1.0"
+flake8 = "3.9.2"
+
+
+[tool.taskipy.tasks]
+format = "black . ./contextualgpt ./telegrambot"
+lint-only = "flake8 .x"
+lint = "task format --check && task lint-only"
+update-requirements = "poetry export -f requirements.txt > requirements.txt"
+build-worker = "poetry self update && poetry install"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
